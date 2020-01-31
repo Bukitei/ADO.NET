@@ -1,0 +1,9 @@
+D:\Users\Alumno\source\repos\visualCADO.NET\bin\Debug\visualCADO.NET.exe.config
+D:\Users\Alumno\source\repos\visualCADO.NET\bin\Debug\visualCADO.NET.exe
+D:\Users\Alumno\source\repos\visualCADO.NET\bin\Debug\visualCADO.NET.pdb
+D:\Users\Alumno\source\repos\visualCADO.NET\obj\Debug\visualCADO.NET.csprojAssemblyReference.cache
+D:\Users\Alumno\source\repos\visualCADO.NET\obj\Debug\visualCADO.NET.Form1.resources
+D:\Users\Alumno\source\repos\visualCADO.NET\obj\Debug\visualCADO.NET.Properties.Resources.resources
+D:\Users\Alumno\source\repos\visualCADO.NET\obj\Debug\visualCADO.NET.csproj.GenerateResource.cache
+D:\Users\Alumno\source\repos\visualCADO.NET\obj\Debug\visualCADO.NET.exe
+D:\Users\Alumno\source\repos\visualCADO.NET\obj\Debug\visualCADO.NET.pdb
