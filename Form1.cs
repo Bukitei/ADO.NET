@@ -48,7 +48,7 @@ namespace visualCADO.NET
                     table = 0; //Indicamos con que tabla estamos tratando
                 }
             }
-           
+
         }
 
         private void goToEstudiantes_Click(object sender, EventArgs e)
@@ -66,8 +66,6 @@ namespace visualCADO.NET
                     da.Fill(ds, "Estudiantes");
 
                     dataGrid.DataSource = ds.Tables["Estudiantes"]; //Cargamos los datos en la tabla
-
-                    dataGrid.selec
 
                     table = 1;
                 }
@@ -118,29 +116,31 @@ namespace visualCADO.NET
 
         private void deleteBttn_Click(object sender, EventArgs e)
         {
-            using (SqlConnection conn = cc.Con)
+            update();
+        }
+
+        private void update()
+        {
+            SqlCommandBuilder commandBuilder = new SqlCommandBuilder(da); // Construye la sentencia correspondiente
+            if (table == 0)
             {
-                conn.Open();
-
-                SqlDataAdapter da = new SqlDataAdapter();
-
-                var rowSelected = dataGrid.SelectedRows;
-
-                if(rowSelected == null)
-                {
-
-                    MessageBoxButtons buttons = MessageBoxButtons.YesNo;
-
-                    MessageBox.Show("Tienes que seleccionar algo para poder eliminar", "Selecciona una fila", buttons);
-                }
-                else
-                {
-                    if(table == 0)
-                    {
-                        SqlCommandBuilder commandbuilder = new SqlCommandBuilder(da);
-                        dataGrid.Rows.RemoveAt 
-                    }
-                }
+                da.Update(ds.Tables["Estancias"]); // Funciona para borrar, insertar o modificar gracias al SqlCommandBuilder
             }
+            else if (table == 1)
+            {
+                da.Update(ds.Tables["Estudiantes"]);
+            }
+            else if (table == 2)
+            {
+                da.Update(ds.Tables["Residencias"]);
+            }
+            else
+            {
+                da.Update(ds.Tables["Universidades"]);
+            }
+
+
+        }
     }
+    
 }
