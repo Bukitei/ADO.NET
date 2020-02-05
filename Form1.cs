@@ -27,15 +27,15 @@ namespace visualCADO.NET
         public Form1()
         {
             InitializeComponent();
+            dataGrid.DefaultCellStyle.NullValue = "Sin dato";
         }
 
         private void goToEstancias_Click(object sender, EventArgs e)
         {
-            using (SqlConnection conn = cc.Con)
+            using (SqlConnection conn = cc.Con())
             {
                 using (SqlCommand cmd = new SqlCommand("select * from estancias", conn))
                 {
-                    conn.Open(); //Abrimos la conexión
 
                     ds = new DataSet();
 
@@ -45,6 +45,12 @@ namespace visualCADO.NET
 
                     dataGrid.DataSource = ds.Tables["Estancias"]; //Cargamos los datos en la tabla
 
+                    dataGrid.Columns[0].HeaderText = "Código de estudiante";
+                    dataGrid.Columns[1].HeaderText = "Código de residencia";
+                    dataGrid.Columns[2].HeaderText = "Fecha de inicio";
+                    dataGrid.Columns[3].HeaderText = "Fecha fin";
+                    dataGrid.Columns[4].HeaderText = "Precio pagado";
+
                     table = 0; //Indicamos con que tabla estamos tratando
                 }
             }
@@ -53,11 +59,10 @@ namespace visualCADO.NET
 
         private void goToEstudiantes_Click(object sender, EventArgs e)
         {
-            using (SqlConnection conn = cc.Con)
+            using (SqlConnection conn = cc.Con())
             {
                 using (SqlCommand cmd = new SqlCommand("select * from estudiantes", conn))
                 {
-                    conn.Open();
 
                     ds = new DataSet();
 
@@ -67,6 +72,11 @@ namespace visualCADO.NET
 
                     dataGrid.DataSource = ds.Tables["Estudiantes"]; //Cargamos los datos en la tabla
 
+                    dataGrid.Columns[0].HeaderText = "Código de estudiante";
+                    dataGrid.Columns[1].HeaderText = "Nombre de estudiante";
+                    dataGrid.Columns[2].HeaderText = "DNI";
+                    dataGrid.Columns[3].HeaderText = "Teléfono de estudiante";
+
                     table = 1;
                 }
             }
@@ -74,11 +84,10 @@ namespace visualCADO.NET
 
         private void goToResidencias_Click(object sender, EventArgs e)
         {
-            using (SqlConnection conn = cc.Con)
+            using (SqlConnection conn = cc.Con())
             {
                 using (SqlCommand cmd = new SqlCommand("select * from residencias", conn))
                 {
-                    conn.Open();
 
                     ds = new DataSet();
 
@@ -86,7 +95,13 @@ namespace visualCADO.NET
 
                     da.Fill(ds, "Residencias");
 
-                    dataGrid.DataSource = ds.Tables["Residencias"]; //Cargamos los datos en la tabla
+                    dataGrid.DataSource = ds.Tables["Residencias"];
+
+                    dataGrid.Columns[0].HeaderText = "Id de residencia";
+                    dataGrid.Columns[1].HeaderText = "Nombre de residencia";
+                    dataGrid.Columns[2].HeaderText = "Código de universidad";
+                    dataGrid.Columns[3].HeaderText = "Precio mensual";
+                    dataGrid.Columns[4].HeaderText = "Comedor";
 
                     table = 2;
                 }
@@ -95,11 +110,10 @@ namespace visualCADO.NET
 
         private void goToUniversidades_Click(object sender, EventArgs e)
         {
-            using (SqlConnection conn = cc.Con)
+            using (SqlConnection conn = cc.Con())
             {
                 using (SqlCommand cmd = new SqlCommand("select * from universidades", conn))
                 {
-                    conn.Open();
 
                     ds = new DataSet();
 
@@ -108,6 +122,9 @@ namespace visualCADO.NET
                     da.Fill(ds, "Universidades");
 
                     dataGrid.DataSource = ds.Tables["Universidades"]; //Cargamos los datos en la tabla
+
+                    dataGrid.Columns[0].HeaderText = "Código de universidad";
+                    dataGrid.Columns[1].HeaderText = "Nombre de universidad";
 
                     table = 3;
                 }
@@ -121,22 +138,29 @@ namespace visualCADO.NET
 
         private void update()
         {
-            SqlCommandBuilder commandBuilder = new SqlCommandBuilder(da); // Construye la sentencia correspondiente
-            if (table == 0)
+            using (SqlConnection conn = cc.Con())
             {
-                da.Update(ds.Tables["Estancias"]); // Funciona para borrar, insertar o modificar gracias al SqlCommandBuilder
-            }
-            else if (table == 1)
-            {
-                da.Update(ds.Tables["Estudiantes"]);
-            }
-            else if (table == 2)
-            {
-                da.Update(ds.Tables["Residencias"]);
-            }
-            else
-            {
-                da.Update(ds.Tables["Universidades"]);
+                SqlCommandBuilder commandBuilder = new SqlCommandBuilder(da); // Construye la sentencia correspondiente
+                da.SelectCommand.Connection = conn;
+                
+
+                if (table == 0)
+                {
+                    da.Update(ds.Tables["Estancias"]); // Funciona para borrar, insertar o modificar gracias al SqlCommandBuilder
+                }
+                else if (table == 1)
+                {
+                    da.Update(ds.Tables["Estudiantes"]);
+                }
+                else if (table == 2)
+                {
+                    da.Update(ds.Tables["Residencias"]);
+                }
+                else
+                {
+                    da.Update(ds.Tables["Universidades"]);
+                }
+
             }
 
 

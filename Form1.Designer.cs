@@ -30,9 +30,7 @@
         {
             this.dataGrid = new System.Windows.Forms.DataGridView();
             this.name = new System.Windows.Forms.Label();
-            this.addBttn = new System.Windows.Forms.Button();
             this.deleteBttn = new System.Windows.Forms.Button();
-            this.modifyBttn = new System.Windows.Forms.Button();
             this.goToEstancias = new System.Windows.Forms.Button();
             this.goToEstudiantes = new System.Windows.Forms.Button();
             this.goToResidencias = new System.Windows.Forms.Button();
@@ -42,6 +40,7 @@
             // 
             // dataGrid
             // 
+            this.dataGrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGrid.Location = new System.Drawing.Point(106, 51);
             this.dataGrid.Name = "dataGrid";
@@ -58,33 +57,16 @@
             this.name.TabIndex = 1;
             this.name.Text = "Borja David Gómez Alayón";
             // 
-            // addBttn
-            // 
-            this.addBttn.Location = new System.Drawing.Point(510, 392);
-            this.addBttn.Name = "addBttn";
-            this.addBttn.Size = new System.Drawing.Size(75, 23);
-            this.addBttn.TabIndex = 2;
-            this.addBttn.Text = "Añadir";
-            this.addBttn.UseVisualStyleBackColor = true;
-            // 
             // deleteBttn
             // 
+            this.deleteBttn.Cursor = System.Windows.Forms.Cursors.Default;
             this.deleteBttn.Location = new System.Drawing.Point(672, 392);
             this.deleteBttn.Name = "deleteBttn";
             this.deleteBttn.Size = new System.Drawing.Size(75, 23);
             this.deleteBttn.TabIndex = 3;
-            this.deleteBttn.Text = "Eliminar";
+            this.deleteBttn.Text = "Actualizar";
             this.deleteBttn.UseVisualStyleBackColor = true;
             this.deleteBttn.Click += new System.EventHandler(this.deleteBttn_Click);
-            // 
-            // modifyBttn
-            // 
-            this.modifyBttn.Location = new System.Drawing.Point(591, 392);
-            this.modifyBttn.Name = "modifyBttn";
-            this.modifyBttn.Size = new System.Drawing.Size(75, 23);
-            this.modifyBttn.TabIndex = 4;
-            this.modifyBttn.Text = "Modificar";
-            this.modifyBttn.UseVisualStyleBackColor = true;
             // 
             // goToEstancias
             // 
@@ -135,9 +117,7 @@
             this.Controls.Add(this.goToResidencias);
             this.Controls.Add(this.goToEstudiantes);
             this.Controls.Add(this.goToEstancias);
-            this.Controls.Add(this.modifyBttn);
             this.Controls.Add(this.deleteBttn);
-            this.Controls.Add(this.addBttn);
             this.Controls.Add(this.name);
             this.Controls.Add(this.dataGrid);
             this.Name = "Form1";
@@ -152,9 +132,7 @@
 
         private System.Windows.Forms.DataGridView dataGrid;
         private System.Windows.Forms.Label name;
-        private System.Windows.Forms.Button addBttn;
         private System.Windows.Forms.Button deleteBttn;
-        private System.Windows.Forms.Button modifyBttn;
         private System.Windows.Forms.Button goToEstancias;
         private System.Windows.Forms.Button goToEstudiantes;
         private System.Windows.Forms.Button goToResidencias;

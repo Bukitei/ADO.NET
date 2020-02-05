@@ -9,17 +9,18 @@ namespace visualCADO.NET
 {
     class Conexion
     {
-        SqlConnection conn;
-        public SqlConnection Con
+        public Conexion() { }
+
+        public SqlConnection Con()
         {
-            get { return conn; }
-            set { conn = value; }
-        }
-        public Conexion()
-        { // establecer la conexion
-            string strConn = "data source=localhost; " +
+            // Nombre servidor + nombre base de dataos + Autentificación Windows SI/NO
+            string connectionString = "data source=localhost; " +
             "initial catalog=bdResidenciasEscolares; integrated security=true";
-            Con = new SqlConnection(strConn);
+
+            SqlConnection connection = new SqlConnection(connectionString);
+            connection.Open(); // Abrimos conexión
+
+            return connection;
         }
     }
 }
